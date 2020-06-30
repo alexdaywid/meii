@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace meii.infrastrutucture.Repository
+namespace meii.infrastructure.Repository
 {
     public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
@@ -22,7 +22,7 @@ namespace meii.infrastrutucture.Repository
         public async Task Add(TEntity entity)
         {
             await _context.AddAsync(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
         }
 
@@ -43,17 +43,17 @@ namespace meii.infrastrutucture.Repository
 
         public virtual async Task Remove(TEntity entity)
         {
-            DbSet.Remove(entity);
-            await SaveChanges();
+            _context.Remove(entity);
+            await SaveChangesAsync();
         }
 
         public virtual async Task Update(TEntity entity)
         {
-            DbSet.Update(entity);
-            await SaveChanges();
+            _context.Update(entity);
+            await SaveChangesAsync();
         }
 
-        public virtual async Task<int> SaveChanges()
+        public virtual async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
         }

@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using meii.Business.Services;
 using meii.Business.Interfaces;
-using meii.infrastrutucture.Repository;
 using meii.Business.Entities.Notificacoes;
 using AutoMapper;
+using Microsoft.OpenApi.Models;
+using meii.infrastructure.Repository;
+using System.Text.Json.Serialization;
 
 namespace meii.Api
 {
@@ -40,21 +42,29 @@ namespace meii.Api
             services.AddDbContext<AuthContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("AuthConnection")));
 
-            services.AddScoped<IClienteServices, ClienteServices>();
-            services.AddScoped<IClienteRepository, ClienteRepository>();
-            services.AddScoped<IEnderecoRepository, EnderecoRepository>();
-            services.AddScoped<INotificador, Notificador>();
-
+           
             // Configuracao Identity Server
             services.AddIdentityCore<IdentityUser>()
             .AddRoles<IdentityRole>()
+            .AddSignInManager<SignInManager<IdentityUser>>()
+            .AddUserManager<UserManager<IdentityUser>>()
             .AddEntityFrameworkStores<AuthContext>()
             .AddDefaultTokenProviders();
+
+            services.AddAuthentication().AddIdentityCookies();
+
+            services.AddScoped<IClienteServices, ClienteServices>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IEnderecoRepository, EnderecoRepository>();
+            services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            services.AddScoped<IProdutoService, ProdutoService>();
+            services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<INotificador, Notificador>();
 
             services.AddAutoMapper((serviceProvider, automapper) =>
             {
                 automapper.AllowNullCollections = true;
-               // automapper.UseEntityFrameworkCoreModel<GmContext>(serviceProvider);
             }, typeof(Startup).Assembly);
 
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -75,6 +85,23 @@ namespace meii.Api
                     });
             });
 
+            // Configurando o serviço de documentação do Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "Comparador de Fundos - Meuportfol.io",
+                        Version = "v1",
+                        Description = "Comparador de Fundos - Meuportfol.io. Para utilização nos procure para obter credencial",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Alex",
+                        }
+                    });
+                
+            });
+
             services.Configure<IISServerOptions>(options =>
             {
                 options.AutomaticAuthentication = true;
@@ -92,9 +119,21 @@ namespace meii.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            // Habilitar o middleware para servir o Swagger gerado como um endpoint JSON
+            app.UseSwagger();
+
+            // Habilitar o middleware para servir o swagger-ui (HTML, JS, CSS, etc.), 
+            // Especificando o Endpoint JSON Swagger.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AMeii - Auxiliando o Micro-Empresário.");
+                
+            });
+
             app.UseCors("Development");
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

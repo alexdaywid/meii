@@ -3,9 +3,8 @@ using System.Threading.Tasks;
 using meii.Business.Entities;
 using meii.Business.Interfaces;
 using meii.infrastrutucture.Context;
-using Microsoft.EntityFrameworkCore;
 
-namespace meii.infrastrutucture.Repository
+namespace meii.infrastructure.Repository
 {
     public class PessoaRepository : EFRepository<Pessoa>, IPessoaRepository
     {

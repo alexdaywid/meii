@@ -2,11 +2,10 @@
 using System.Threading.Tasks;
 using meii.Business.Entities;
 using meii.Business.Interfaces;
-using meii.Business.Repository;
 using meii.infrastrutucture.Context;
 using Microsoft.EntityFrameworkCore;
 
-namespace meii.infrastrutucture.Repository
+namespace meii.infrastructure.Repository
 {
     public class ClienteRepository : EFRepository<Cliente>, IClienteRepository
     {
@@ -28,7 +27,7 @@ namespace meii.infrastrutucture.Repository
                 .AsNoTracking()
                 .Include(p => p.Pessoa)
                     .ThenInclude(e => e.Endereco)
-                .FirstOrDefaultAsync(c => c.ClienteId == id);
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
 
     }

@@ -14,6 +14,6 @@ namespace meii.Business.Interfaces
         Task Update(TEntity entity);
         Task Remove(TEntity entity);
         Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity, bool>> predicate);
-        Task<int> SaveChanges();
+        Task<int> SaveChangesAsync();
     }
 }

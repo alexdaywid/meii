@@ -5,20 +5,14 @@ using System.Text;
 
 namespace meii.Business.Entities
 {
-    public class Pessoa
+    public abstract class Pessoa
     {
-        public int PessoaId { get; set; }
-
+        public int Id { get; set; }
         public string Nome { get; set; }
-
         public string Email { get; set; }
-
         public string TelefoneFixo { get; set; }
-
         public string TelefoneCelular { get; set; }
-
         public Cliente Cliente { get; set; }
-
         public ICollection<Endereco> Endereco { get; set; }
     }
 }

@@ -47,18 +47,32 @@ namespace meii.Api.Controllers
             return Ok(_mapper.Map<ClienteViewModel>(cliente));
         }
 
-        // POST: api/Cliente
-        [HttpPost]
-        public async Task<ActionResult<ClienteViewModel>> Post(ClienteViewModel clienteViewModel)
+        // POST: api/cliente/cadastro-pessoa-fisica
+        [HttpPost()]
+        public async Task<ActionResult<ClienteViewModel>> Post(ClientePessoaFisicaViewModel clientePessoaFisica)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var cliente = _mapper.Map<Cliente>(clienteViewModel);
+            var cliente = _mapper.Map<Cliente>(clientePessoaFisica);
 
             await _clienteService.Add(cliente);
 
             return Ok(_mapper.Map<ClienteViewModel>(cliente));
         }
+
+        // POST: api/Cliente
+        [HttpPost("cadastro-pessoa-juridica")]
+        public async Task<ActionResult<ClienteViewModel>> Post(ClientePessoaJuridicaViewModel clientePessoaJuridica)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var cliente = _mapper.Map<Cliente>(clientePessoaJuridica);
+
+            await _clienteService.Add(cliente);
+
+            return Ok(_mapper.Map<ClienteViewModel>(cliente));
+        }
+
 
         // PUT: api/Cliente/5
         [HttpPut("{id}")]

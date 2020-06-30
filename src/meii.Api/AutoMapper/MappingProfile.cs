@@ -16,6 +16,13 @@ namespace meii.Api.AutoMapper
             CreateMap<Cliente, ClienteViewModel>()
                 .ForMember(x => x.Pessoa, opt => opt.MapFrom(x => x.Pessoa)).ReverseMap();
 
+            CreateMap<Cliente, ClientePessoaFisicaViewModel>()
+               .ForMember(x => x.Pessoa, opt => opt.MapFrom(x => x.Pessoa)).ReverseMap();
+
+            CreateMap<Cliente, ClientePessoaJuridicaViewModel>()
+              .ForMember(x => x.Pessoa, opt => opt.MapFrom(x => x.Pessoa)).ReverseMap();
+
+           
             //Mapeando Herança
             CreateMap<Pessoa, PessoaViewModel>()
                 .Include<PessoaFisica, PessoaFisicaViewModel>()
@@ -23,10 +30,18 @@ namespace meii.Api.AutoMapper
                 .ForMember(p=> p.Endereco, opt => opt.MapFrom(e => e.Endereco))
                 .ReverseMap();
 
+            CreateMap<PessoaFisica, ClientePessoaFisicaViewModel>().ReverseMap();
+            CreateMap<PessoaFisica, ClientePessoaJuridicaViewModel>().ReverseMap();
+            
             CreateMap<PessoaFisica, PessoaFisicaViewModel>().ReverseMap();
             CreateMap<PessoaJuridica, PessoaJuridicaViewModel>().ReverseMap();
 
             CreateMap<Endereco, EnderecoViewModel>().ReverseMap();
+
+            CreateMap<Produto, ProdutoVM>()
+                .ForMember(des => des.Categoria, opt => opt.MapFrom(c => c.Categoria)).ReverseMap();
+
+            CreateMap<Categoria, CategoriaVM>().ReverseMap();
         }
        
     }

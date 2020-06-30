@@ -6,7 +6,7 @@ using System.Text;
 
 namespace meii.Business.Interfaces
 {
-    public interface IEmpreendedorRepository : IRepository<Empreendedor>
+    public interface IEmpresaRepository : IRepository<Empresa>
     {
     }
 }

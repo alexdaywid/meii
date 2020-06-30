@@ -6,12 +6,11 @@ namespace meii.Business.Entities
 {
     public class Cliente
     {
-        public int ClienteId { get; set; }
-
+        public int Id { get; set; }
         public string Codigo { get; set; }
-
         public int PessoaId { get; set; }
-
         public Pessoa Pessoa { get; set; }
+
     }
+
 }

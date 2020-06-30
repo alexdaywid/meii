@@ -2,7 +2,7 @@
 using meii.Business.Interfaces;
 using meii.infrastrutucture.Context;
 
-namespace meii.infrastrutucture.Repository
+namespace meii.infrastructure.Repository
 {
     public class EnderecoRepository : EFRepository<Endereco>, IEnderecoRepository
     {

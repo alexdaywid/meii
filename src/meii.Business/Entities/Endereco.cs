@@ -7,7 +7,7 @@ namespace meii.Business.Entities
 {
     public class Endereco
     {
-        public int EnderecoId { get; set; }
+        public int Id { get; set; }
 
         public string Logradouro { get; set; }
 

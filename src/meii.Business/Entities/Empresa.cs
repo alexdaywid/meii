@@ -4,10 +4,8 @@ using System.Text;
 
 namespace meii.Business.Entities
 {
-    public class Empreendedor
+    public class Empresa
     {
-        public int EmpreendedorId { get; set; }
-
-
+        public int Id { get; set; }
     }
 }
