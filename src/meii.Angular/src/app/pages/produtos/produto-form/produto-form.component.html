@@ -1,0 +1,60 @@
+
+<div class="needs-validation card p-1 mt-3" novalidate="">
+  <div class="row justify-content-md-center">
+
+    <div class="col-md-12 mb-3">
+        <app-breadcrumb [detailsBreadcrump]="breadcrumpDetails"></app-breadcrumb>
+        <!-- <app-btn-create [details]="btnDetailsForm"></app-btn-create> -->
+       <app-btn-edit [details]="btnDetailsForm" (newItemEvent)= "onSubmit($event)"></app-btn-edit>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-horizontal mr-2 ml-2" [formGroup] = "produtoForm" >
+             <div class="form-row">
+               <div class="col-md-6 mb-3">
+                 <label for="nome">Nome</label>
+                 <div class="input-group">
+                   <input type="text" class="form-control" name="nome" formControlName ="nome" required>
+                 </div> 
+               </div>
+               <div class="col-md-6 mb-3">
+                 <label for="descricao">Descrição</label>
+                 <div class="input-group input-group">
+                   <input type="text" class="form-control" name="descricao"  formControlName="descricao">
+                 </div>
+               </div>
+             </div>
+            
+             <div class="form-row">
+               <div class="col-md-4 mb-2">
+                 <label for="dataCadastro">Data Cadastro</label>
+                 <div class="input-group">
+                   <input type="date" class="form-control"  name="dataCadastro"  formControlName="dataCadastro">
+                 </div>
+               </div>
+               <div class="col-md-2 mb-2">
+                <label for="quantidade">Quantidade</label>
+                <div class="input-group">
+                  <input type="number" class="form-control"  name="quantidade"  formControlName="quantidade">
+                </div>
+              </div>
+              <div class="col-md-2 mb-2">
+                <label for="quantidade">Valor</label>
+                <div class="input-group">
+                  <input type="number" class="form-control"  name="valor"  formControlName="valor">
+                </div>
+              </div>
+              <div class="col-md-4 mb-2">
+                <label for="categoria">Categoria</label>
+                <select class="form-control" id="categoriaId" formControlName="categoriaId">
+                  <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">{{categoria.nome}}</option>
+                </select>
+              </div>
+             </div>
+          </form>
+      </div>
+      </div>
+    </div>
+</div>                                
