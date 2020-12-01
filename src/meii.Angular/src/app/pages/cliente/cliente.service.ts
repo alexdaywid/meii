@@ -31,37 +31,13 @@ export class ClienteService {
     );
   }
 
-  // public criarClientePessoaFisica(cliente: Cliente) {
-  //   this.http.post<Cliente>(this.baseUrl, cliente, this.httpOptions)
-  //   .subscribe(res => {
-  //     alert(res)
-  //   }, erro => {
-  //   });
-  // }
-  // create(product: Product): Observable<Product> {
-  //   return this.http.post<Product>(this.baseUrl, product).pipe(
-  //     map((obj) => obj),
-  //     catchError((e) => this.errorHandler(e))
-  //   );
-  // }
-
-
-  criarClientePessoaFisica(cliente: Cliente) {
-    this.http.post<Cliente>(this.baseUrl, cliente, this.httpOptions)
-    .subscribe(res => {
-      alert('Salvo com sucesso');
-    }, error =>  {
-      this.handleError(error);
-    });
+  criarClientePessoaFisica (cliente: Cliente): Observable<Cliente> {
+    const url = `${this.baseUrl}/cadastro-pessoa-fisica`;
+    return this.http.post<Cliente>(this.baseUrl, cliente)
+    .pipe(map((obj) => obj),
+      catchError((e) => this.handleError(e))
+    );
   }
-
-  // criarClientePessoaFisica (cliente: Cliente): Observable<Cliente> {
-  //   const url = `${this.baseUrl}/cadastro-pessoa-fisica`;
-  //   return this.http.post<Cliente>(this.baseUrl, cliente)
-  //   .pipe(map((obj) => obj),
-  //     catchError((e) => this.handleError(e))
-  //   );
-  // }
 
 
   public criarClientePessoaJuridica(cliente: Cliente) {

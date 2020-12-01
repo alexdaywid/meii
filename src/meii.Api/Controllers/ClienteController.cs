@@ -47,8 +47,8 @@ namespace meii.Api.Controllers
             return Ok(_mapper.Map<ClienteViewModel>(cliente));
         }
 
-        // POST: api/cliente/cadastro-pessoa-fisica
-        [HttpPost()]
+        // POST: api/cliente/pessoa-fisica
+        [HttpPost("pessoa-fisica")]
         public async Task<ActionResult<ClienteViewModel>> Post(ClientePessoaFisicaViewModel clientePessoaFisica)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -60,8 +60,8 @@ namespace meii.Api.Controllers
             return Ok(_mapper.Map<ClienteViewModel>(cliente));
         }
 
-        // POST: api/Cliente
-        [HttpPost("cadastro-pessoa-juridica")]
+        // POST: api/cliente/pessoa-juridica
+        [HttpPost("pessoa-juridica")]
         public async Task<ActionResult<ClienteViewModel>> Post(ClientePessoaJuridicaViewModel clientePessoaJuridica)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

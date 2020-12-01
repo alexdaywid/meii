@@ -7,7 +7,7 @@ namespace meii.Api.ViewModel
 {
     public class EnderecoViewModel
     {
-        public int EnderecoId { get; set; }
+        public int Id { get; set; }
 
         public string Logradouro { get; set; }
 

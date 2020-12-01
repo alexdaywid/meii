@@ -37,4 +37,25 @@ namespace meii.Api.ViewModel
         public string Password { get; set; }
 
     }
+
+    public class UserTokenViewModel
+    {
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public IEnumerable<ClaimViewModel> Claims { get; set; }
+    }
+
+    public class LoginResponsavelViewModel
+    {
+        public string AcessToken { get; set; }
+        public double ExpireIn { get; set; }
+        public UserTokenViewModel UserToken { get; set; }
+    }
+
+    public class ClaimViewModel
+    {
+        public string Value { get; set; }
+        public string Type { get;set }
+    }
+
 }

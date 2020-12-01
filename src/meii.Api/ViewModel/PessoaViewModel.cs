@@ -11,7 +11,7 @@ namespace meii.Api.ViewModel
 
         public string Email { get; set; }
 
-        public string TelefoneFixo { get; set; }
+        public string TelefoneAlternativo { get; set; }
 
         public string TelefoneCelular { get; set; }
 

@@ -7,7 +7,7 @@ namespace meii.Api.ViewModel
 {
     public class ClienteViewModel
     {
-        public int ClienteId { get; set; }
+        public int Id { get; set; }
         public string Codigo { get; set; }  
         public PessoaViewModel Pessoa { get; set; }
 

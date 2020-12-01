@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using meii.Api.Extensions;
 using meii.Api.ViewModel;
 using meii.Business.Entities;
 using meii.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace meii.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutoController : ControllerBase
@@ -49,6 +52,7 @@ namespace meii.Api.Controllers
         }
 
         // POST: api/Produto
+        [ClaimsAuthorize("Produto", "Adicionar")]
         [HttpPost]
         public async Task<ActionResult<ProdutoVM>> SalvarProduto(ProdutoVM produtoVM)
         {
@@ -60,6 +64,7 @@ namespace meii.Api.Controllers
         }
 
         // PUT: api/Produto/5
+        [ClaimsAuthorize("Produto", "Atualizar")]
         [HttpPut("{id:int}")]
         public async Task<ActionResult> AtualizarProduto (int id, ProdutoVM produto)
         {

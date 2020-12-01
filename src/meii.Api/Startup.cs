@@ -16,6 +16,10 @@ using AutoMapper;
 using Microsoft.OpenApi.Models;
 using meii.infrastructure.Repository;
 using System.Text.Json.Serialization;
+using meii.Api.Extensions;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace meii.Api
 {
@@ -83,6 +87,32 @@ namespace meii.Api
                         .AllowAnyHeader()
                         .AllowCredentials();
                     });
+            });
+
+            //JWT
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = appSettings.ValidoEm,
+                    ValidIssuer = appSettings.Emissor,
+                };
             });
 
             // Configurando o serviço de documentação do Swagger

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using meii.infrastrutucture.Context;
 
 namespace meii.infrastructure.Migrations
 {
     [DbContext(typeof(MEContext))]
-    partial class MEContextModelSnapshot : ModelSnapshot
+    [Migration("20201110185452_AddTelefoneAlternativoCliente")]
+    partial class AddTelefoneAlternativoCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
