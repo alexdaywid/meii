@@ -77,12 +77,14 @@ namespace meii.Api
                 options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             });
 
+            // Cors politica de restrição de origem
             services.AddCors(options =>
             {
                 options.AddPolicy("Development",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
+                        builder
+                        .WithOrigins("http://localhost:4200", "https://localhost:4200")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials();
@@ -147,6 +149,10 @@ namespace meii.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts(); //habilita uso https
             }
 
             // Habilitar o middleware para servir o Swagger gerado como um endpoint JSON

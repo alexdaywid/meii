@@ -78,7 +78,7 @@ namespace meii.Api.Controllers
         }
 
 
-        private async Task<string> GerarJwt(string email)
+        private async Task<LoginResponsavelViewModel> GerarJwt(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var claims = await _userManager.GetClaimsAsync(user);
@@ -112,7 +112,20 @@ namespace meii.Api.Controllers
             });
 
             var encodedToken = tokenHandler.WriteToken(token);
-            return encodedToken;
+
+            var response = new LoginResponsavelViewModel
+            {
+                AcessToken = encodedToken,
+                ExpireIn = TimeSpan.FromHours(_appSettings.ExpiracaoHoras).TotalSeconds,
+                UserToken = new UserTokenViewModel
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    Claims = claims.Select(c => new ClaimViewModel { Type = c.Type, Value = c.Value })
+                }
+            };
+
+            return response;
         }
 
         private static long ToUnixpochDate(DateTime date)
