@@ -10,6 +10,10 @@ namespace meii.Business.Entities
         public string Codigo { get; set; }
         public int PessoaId { get; set; }
         public Pessoa Pessoa { get; set; }
+        public ICollection<ClienteCartaoFidelidade> ClienteCartaoFidelidades { get; set; }
+
+
+
 
     }
 
