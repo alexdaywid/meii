@@ -37,6 +37,7 @@ export class AppComponent {
         this.label = 'nav-dashboard-tab';
         break;
     }
+    console.log(tipo);
     this.itensMenu = this.getItensMenuTipo(tipo);
   }
 

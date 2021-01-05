@@ -33,6 +33,7 @@ namespace meii.Api.Controllers
         }
 
         // GET: api/Produto
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IEnumerable<ProdutoVM>> ListarTodoProduto()
         {
