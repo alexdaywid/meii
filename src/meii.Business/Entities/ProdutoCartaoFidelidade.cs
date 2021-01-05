@@ -6,8 +6,8 @@ namespace meii.Business.Entities
 {
     public class ProdutoCartaoFidelidade
     {
-        public int IdProduto { get; set; }
-        public int IdCartaoFidelidade { get; set; }
+        public int ProdutoId { get; set; }
+        public int CartaoFidelidadeId { get; set; }
         public Produto Produto { get; set; }
         public CartaoFidelidade CartaoFidelidade { get; set; }
     }
