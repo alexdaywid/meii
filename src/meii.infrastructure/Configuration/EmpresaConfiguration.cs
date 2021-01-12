@@ -11,7 +11,17 @@ namespace meii.infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Empresa> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable("Empresa")
+                .HasKey(e => e.Id);
+
+            builder.Property(e => e.PessoaId);
+
+            //One-to-One Relationships
+            builder.HasOne<Pessoa>(e => e.Pessoa)
+                .WithOne(p => p.Empresa)
+                .HasForeignKey<Empresa>(e => e.PessoaId);
+
+            
         }
     }
 }
