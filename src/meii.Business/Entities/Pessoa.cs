@@ -15,5 +15,6 @@ namespace meii.Business.Entities
         public Cliente Cliente { get; set; }
         public ICollection<Endereco> Endereco { get; set; }
         public Empresa Empresa { get; set; }
+        public Vendedor Vendedor { get; set; }
     }
 }

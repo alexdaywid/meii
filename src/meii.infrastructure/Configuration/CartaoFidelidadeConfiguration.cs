@@ -35,12 +35,8 @@ namespace meii.infrastructure.Configuration
                 .HasColumnType("Date")
                 .HasDefaultValueSql("GetUtcDate()");
 
-            builder.Property(c => c.Pin);
-
-
-
-
-
+            builder.Property(c => c.Pin)
+                .HasColumnType("bit");
 
         }
     }

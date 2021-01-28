@@ -5,6 +5,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210127010946_Adicionando cartaoFidelidade.cs" />
+    <Compile Remove="Migrations\20210127010946_Adicionando cartaoFidelidade.Designer.cs" />
+    <Compile Remove="Migrations\20210127012257_AddCartaoFidelidade.cs" />
+    <Compile Remove="Migrations\20210127012257_AddCartaoFidelidade.Designer.cs" />
+    <Compile Remove="Migrations\20210127013416_AddCartaoFidelidade.cs" />
+    <Compile Remove="Migrations\20210127013416_AddCartaoFidelidade.Designer.cs" />
+    <Compile Remove="Migrations\20210127014401_Inicial.cs" />
+    <Compile Remove="Migrations\20210127014401_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210127023342_Inicial.cs" />
+    <Compile Remove="Migrations\20210127023342_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210127024233_Inicial.cs" />
+    <Compile Remove="Migrations\20210127024233_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210128012539_Inicial.cs" />
+    <Compile Remove="Migrations\20210128012539_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210128012933_Inicial.cs" />
+    <Compile Remove="Migrations\20210128012933_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210128013329_Inicial.cs" />
+    <Compile Remove="Migrations\20210128013329_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210128013732_Inicial.cs" />
+    <Compile Remove="Migrations\20210128013732_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210128015436_Inicial.cs" />
+    <Compile Remove="Migrations\20210128015436_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210128020245_Inicial.cs" />
+    <Compile Remove="Migrations\20210128020245_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20210128021139_AddAutoIncrementoEmpresa.cs" />
+    <Compile Remove="Migrations\20210128021139_AddAutoIncrementoEmpresa.Designer.cs" />
+    <Compile Remove="Migrations\20210128021916_AddEndereco.cs" />
+    <Compile Remove="Migrations\20210128021916_AddEndereco.Designer.cs" />
+    <Compile Remove="Migrations\20210128022111_AddEndereco1.cs" />
+    <Compile Remove="Migrations\20210128022111_AddEndereco1.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>

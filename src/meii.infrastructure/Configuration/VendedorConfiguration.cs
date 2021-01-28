@@ -7,13 +7,13 @@ using System.Text;
 
 namespace meii.infrastructure.Configuration
 {
-    public class EmpresaConfiguration : IEntityTypeConfiguration<Empresa>
+    public class VendedorConfiguration : IEntityTypeConfiguration<Vendedor>
     {
-        public void Configure(EntityTypeBuilder<Empresa> builder)
+        public void Configure(EntityTypeBuilder<Vendedor> builder)
         {
-            builder.ToTable("empresa")
+            builder.ToTable("vendedor")
                 .HasKey(e => e.Id);
-
+            
             builder.Property(e => e.Id)
                 .ValueGeneratedOnAdd();
 
@@ -21,12 +21,11 @@ namespace meii.infrastructure.Configuration
 
             //One-to-One Relationships
             builder.HasOne<Pessoa>(e => e.Pessoa)
-                .WithOne(p => p.Empresa)
-                
-                .HasForeignKey<Empresa>(e => e.PessoaId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithOne(p => p.Vendedor)
+                .HasForeignKey<Vendedor>(e => e.PessoaId);
 
 
+            
         }
     }
 }

@@ -14,6 +14,28 @@ namespace meii.infrastructure.Configuration
             builder.ToTable("produto");
             builder.HasKey(p => p.Id);
 
+            builder.Property(p => p.Id)
+               .ValueGeneratedOnAdd();
+
+            builder.Property(p => p.Nome)
+                .HasColumnType("varchar")
+                .HasMaxLength(80)
+                .IsRequired();
+
+            builder.Property(p => p.Descricao)
+                .HasColumnType("varchar")
+                .HasMaxLength(80);
+
+            builder.Property(p => p.DataCadastro)
+                .HasColumnType("Date")
+                .HasDefaultValueSql("GetUtcDate()");
+
+            builder.Property(p => p.Quantidade)
+                .HasColumnType("int");
+
+            builder.HasOne(p => p.Categoria)
+                .WithMany(p => p.Produto)
+                .HasForeignKey(p => p.CategoriaId);
         }
     }
 }

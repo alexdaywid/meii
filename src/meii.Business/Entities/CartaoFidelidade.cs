@@ -14,6 +14,8 @@ namespace meii.Business.Entities
         public DateTime DataCadastro { get; set; }
         public DateTime DataFim { get; set; }
         public bool Pin { get; set; }
+        public int EmpresaId { get; set; }
+        public Empresa Empresa { get; set; }
         public ICollection<ProdutoCartaoFidelidade> ProdutoCartaoFidelidade { get; set; }
         public ICollection<PinCartaoFidelidade> PinCartaoFidelidades { get; set; }
         public ICollection<ClienteCartaoFidelidade> ClienteCartaoFidelidades { get; set; }

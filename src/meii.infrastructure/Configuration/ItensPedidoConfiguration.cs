@@ -16,11 +16,12 @@ namespace meii.infrastructure.Configuration
 
             builder.HasOne<Pedido>(i => i.Pedido)
                 .WithMany(p => p.ItensPedidos)
-                .HasForeignKey(i => i.PedidoId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
             builder.HasOne<Produto>(i => i.Produto)
                 .WithMany(p => p.ItensPedidos)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(i => i.ProdutoId);
 
             builder.Property(i => i.Valor).HasColumnType("money").IsRequired();

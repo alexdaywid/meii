@@ -10,8 +10,8 @@ using meii.infrastrutucture.Context;
 namespace meii.infrastructure.Migrations
 {
     [DbContext(typeof(MEContext))]
-    [Migration("20200524002808_AlterFieldDescricao")]
-    partial class AlterFieldDescricao
+    [Migration("20210128022535_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,57 @@ namespace meii.infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("meii.Business.Entities.CartaoFidelidade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<DateTime>("DataFim")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GetUtcDate()");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(80)")
+                        .HasMaxLength(80);
+
+                    b.Property<bool>("Pin")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int")
+                        .HasMaxLength(1);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.ToTable("cartaofidelidade");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("CartaoFidelidade");
+                });
 
             modelBuilder.Entity("meii.Business.Entities.Cartoes", b =>
                 {
@@ -69,7 +120,8 @@ namespace meii.infrastructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar")
+                        .HasMaxLength(8);
 
                     b.Property<int>("PessoaId")
                         .HasColumnType("int");
@@ -79,7 +131,22 @@ namespace meii.infrastructure.Migrations
                     b.HasIndex("PessoaId")
                         .IsUnique();
 
-                    b.ToTable("Clientes");
+                    b.ToTable("cliente");
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.ClienteCartaoFidelidade", b =>
+                {
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CartaoFidelidadeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClienteId", "CartaoFidelidadeId");
+
+                    b.HasIndex("CartaoFidelidadeId");
+
+                    b.ToTable("clientecartaofidelidade");
                 });
 
             modelBuilder.Entity("meii.Business.Entities.Empresa", b =>
@@ -89,9 +156,16 @@ namespace meii.infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("PessoaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Empresas");
+                    b.HasIndex("PessoaId")
+                        .IsUnique()
+                        .HasFilter("[PessoaId] IS NOT NULL");
+
+                    b.ToTable("empresa");
                 });
 
             modelBuilder.Entity("meii.Business.Entities.Endereco", b =>
@@ -126,7 +200,7 @@ namespace meii.infrastructure.Migrations
 
                     b.HasIndex("PessoaId");
 
-                    b.ToTable("Enderecos");
+                    b.ToTable("endereco");
                 });
 
             modelBuilder.Entity("meii.Business.Entities.ItensPedido", b =>
@@ -217,22 +291,66 @@ namespace meii.infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
+
+                    b.Property<string>("TelefoneAlternativo")
+                        .HasColumnType("varchar")
+                        .HasMaxLength(12);
 
                     b.Property<string>("TelefoneCelular")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TelefoneFixo")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar")
+                        .HasMaxLength(12);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Pessoas");
+                    b.ToTable("pessoa");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Pessoa");
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.Pin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasColumnType("varchar")
+                        .HasMaxLength(8);
+
+                    b.Property<int>("QuantidadeMinima")
+                        .HasColumnType("int")
+                        .HasMaxLength(8);
+
+                    b.Property<int>("QuantidadeMáxima")
+                        .HasColumnType("int")
+                        .HasMaxLength(8);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("pin");
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.PinCartaoFidelidade", b =>
+                {
+                    b.Property<int>("PinId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CartaoFidelidadeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PinId", "CartaoFidelidadeId");
+
+                    b.HasIndex("CartaoFidelidadeId");
+
+                    b.ToTable("pincartaofelicidade");
                 });
 
             modelBuilder.Entity("meii.Business.Entities.Produto", b =>
@@ -246,13 +364,18 @@ namespace meii.infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<string>("Descricao")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");
@@ -267,6 +390,21 @@ namespace meii.infrastructure.Migrations
                     b.ToTable("produto");
                 });
 
+            modelBuilder.Entity("meii.Business.Entities.ProdutoCartaoFidelidade", b =>
+                {
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CartaoFidelidadeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProdutoId", "CartaoFidelidadeId");
+
+                    b.HasIndex("CartaoFidelidadeId");
+
+                    b.ToTable("produtocartaofidelidade");
+                });
+
             modelBuilder.Entity("meii.Business.Entities.Vendedor", b =>
                 {
                     b.Property<int>("Id")
@@ -274,9 +412,47 @@ namespace meii.infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("PessoaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Vendedores");
+                    b.HasIndex("PessoaId")
+                        .IsUnique();
+
+                    b.ToTable("vendedor");
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.Desconto", b =>
+                {
+                    b.HasBaseType("meii.Business.Entities.CartaoFidelidade");
+
+                    b.Property<string>("Percentual")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Valor")
+                        .HasColumnType("real");
+
+                    b.Property<float>("ValorMinimo")
+                        .HasColumnType("real");
+
+                    b.HasDiscriminator().HasValue("Desconto");
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.Indicacao", b =>
+                {
+                    b.HasBaseType("meii.Business.Entities.CartaoFidelidade");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PinCodigo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Valido")
+                        .HasColumnType("bit");
+
+                    b.HasDiscriminator().HasValue("Indicacao");
                 });
 
             modelBuilder.Entity("meii.Business.Entities.PessoaFisica", b =>
@@ -284,13 +460,14 @@ namespace meii.infrastructure.Migrations
                     b.HasBaseType("meii.Business.Entities.Pessoa");
 
                     b.Property<string>("Cpf")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.Property<DateTime>("DtNascimento")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Rg")
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.HasDiscriminator().HasValue("PessoaFisica");
                 });
@@ -300,18 +477,33 @@ namespace meii.infrastructure.Migrations
                     b.HasBaseType("meii.Business.Entities.Pessoa");
 
                     b.Property<string>("Cnpj")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.Property<string>("InscEstadual")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.Property<string>("InscMunicipal")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.Property<string>("NomeFantasia")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar")
+                        .HasMaxLength(80);
 
                     b.HasDiscriminator().HasValue("PessoaJuridica");
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.CartaoFidelidade", b =>
+                {
+                    b.HasOne("meii.Business.Entities.Empresa", "Empresa")
+                        .WithMany("CartaoFidelidades")
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("meii.Business.Entities.Cliente", b =>
@@ -321,6 +513,29 @@ namespace meii.infrastructure.Migrations
                         .HasForeignKey("meii.Business.Entities.Cliente", "PessoaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.ClienteCartaoFidelidade", b =>
+                {
+                    b.HasOne("meii.Business.Entities.CartaoFidelidade", "CartaoFidelidade")
+                        .WithMany("ClienteCartaoFidelidades")
+                        .HasForeignKey("CartaoFidelidadeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("meii.Business.Entities.Cliente", "Cliente")
+                        .WithMany("ClienteCartaoFidelidades")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.Empresa", b =>
+                {
+                    b.HasOne("meii.Business.Entities.Pessoa", "Pessoa")
+                        .WithOne("Empresa")
+                        .HasForeignKey("meii.Business.Entities.Empresa", "PessoaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("meii.Business.Entities.Endereco", b =>
@@ -365,11 +580,50 @@ namespace meii.infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("meii.Business.Entities.PinCartaoFidelidade", b =>
+                {
+                    b.HasOne("meii.Business.Entities.CartaoFidelidade", "CartaoFidelidade")
+                        .WithMany("PinCartaoFidelidades")
+                        .HasForeignKey("CartaoFidelidadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("meii.Business.Entities.Pin", "Pin")
+                        .WithMany("PinCartaoFidelidades")
+                        .HasForeignKey("PinId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("meii.Business.Entities.Produto", b =>
                 {
                     b.HasOne("meii.Business.Entities.Categoria", "Categoria")
                         .WithMany("Produto")
                         .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.ProdutoCartaoFidelidade", b =>
+                {
+                    b.HasOne("meii.Business.Entities.CartaoFidelidade", "CartaoFidelidade")
+                        .WithMany("ProdutoCartaoFidelidade")
+                        .HasForeignKey("CartaoFidelidadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("meii.Business.Entities.Produto", "Produto")
+                        .WithMany("ProdutoCartaoFidelidade")
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("meii.Business.Entities.Vendedor", b =>
+                {
+                    b.HasOne("meii.Business.Entities.Pessoa", "Pessoa")
+                        .WithOne("Vendedor")
+                        .HasForeignKey("meii.Business.Entities.Vendedor", "PessoaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -7,19 +7,19 @@ using System.Text;
 
 namespace meii.infrastructure.Configuration
 {
-    public class CategoriaConfiguration : IEntityTypeConfiguration<Categoria>
+    public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
     {
-        public void Configure(EntityTypeBuilder<Categoria> builder)
+        public void Configure(EntityTypeBuilder<Cliente> builder)
         {
-            builder.ToTable("categoria");
+            builder.ToTable("cliente");
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Id)
                 .ValueGeneratedOnAdd();
 
-            builder.Property(c => c.Nome)
-                .HasColumnType("varchar(40)")
-                .IsRequired();
+            builder.Property(c => c.Codigo)
+                .HasColumnType("varchar")
+                .HasMaxLength(8);
         }
     }
 }

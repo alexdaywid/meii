@@ -22,12 +22,37 @@ namespace meii.infrastrutucture.Context
         public DbSet<Pagamento> Pagamentos { get; set; }
         public DbSet<Cartoes> Cartoes { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Pin> Pin { get; set; }
+        public DbSet<PinCartaoFidelidade> PinCartaoFidelidades { get; set; }
+        public DbSet<CartaoFidelidade> CartaoFidelidades { get; set; }
+        public DbSet<ClienteCartaoFidelidade> ClienteCartaoFidelidades { get; set; }
+        public DbSet<ProdutoCartaoFidelidade> ProdutoCartaoFidelidades { get; set; }
+        public DbSet<Indicacao> Indicacaos { get; set; }
+        public DbSet<ItensPedido> ItensPedidos { get; set; }
+        public DbSet<Desconto> Descontos { get; set; }
+
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.ApplyConfiguration(new CategoriaConfiguration());
-            modelBuilder.ApplyConfiguration(new ItensPedidoConfiguration());
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new CartaoFidelidadeConfiguration());
+            modelBuilder.ApplyConfiguration(new ClienteCartaoFidelidadeConfiguration());       
+            modelBuilder.ApplyConfiguration(new EmpresaConfiguration());
+            modelBuilder.ApplyConfiguration(new ItensPedidoConfiguration());
+            modelBuilder.ApplyConfiguration(new PessoaConfiguration());
+            modelBuilder.ApplyConfiguration(new PessoaFisicaConfiguration());
+            modelBuilder.ApplyConfiguration(new PessoaJuridicaConfiguration());
+            modelBuilder.ApplyConfiguration(new PinConfiguration());
+            modelBuilder.ApplyConfiguration(new PinCartaoFidelidadeConfiguration());
+            modelBuilder.ApplyConfiguration(new ProdutoCartaoFidelidadeConfiguration());
+            modelBuilder.ApplyConfiguration(new VendedorConfiguration());
+            modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
 
         }
     }
