@@ -7,11 +7,14 @@ using AutoMapper;
 using meii.Api.ViewModel;
 using meii.Business.Entities;
 using meii.Business.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace meii.Api.Controllers
 {
+    //[Authorize]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase

@@ -18,16 +18,13 @@ namespace meii.infrastructure.Configuration
                .ValueGeneratedOnAdd();
 
             builder.Property(p => p.Codigo)
-                .HasColumnType("varchar")
                 .HasMaxLength(8)
                 .IsRequired();
 
             builder.Property(p => p.QuantidadeMinima)
-                .HasColumnType("int")
                 .HasMaxLength(8);
 
             builder.Property(p => p.QuantidadeMáxima)
-                .HasColumnType("int")
                 .HasMaxLength(8);
 
         }

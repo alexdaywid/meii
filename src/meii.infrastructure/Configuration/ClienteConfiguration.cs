@@ -18,7 +18,6 @@ namespace meii.infrastructure.Configuration
                 .ValueGeneratedOnAdd();
 
             builder.Property(c => c.Codigo)
-                .HasColumnType("varchar")
                 .HasMaxLength(8);
         }
     }

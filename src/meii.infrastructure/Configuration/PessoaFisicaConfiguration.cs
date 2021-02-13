@@ -13,7 +13,6 @@ namespace meii.infrastructure.Configuration
         {
             
             builder.Property(pf => pf.Cpf)
-                .HasColumnType("varchar")
                 .HasMaxLength(80)
                 .IsRequired();
 

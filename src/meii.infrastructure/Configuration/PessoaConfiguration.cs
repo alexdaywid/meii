@@ -18,20 +18,15 @@ namespace meii.infrastructure.Configuration
                .ValueGeneratedOnAdd();
 
             builder.Property(p => p.Nome)
-                .HasColumnType("varchar")
                 .HasMaxLength(80);
 
-
             builder.Property(p =>p.Email)
-                .HasColumnType("varchar")
                 .HasMaxLength(80);
 
             builder.Property(p => p.TelefoneAlternativo)
-                .HasColumnType("varchar")
                 .HasMaxLength(12);
 
             builder.Property(p => p.TelefoneCelular)
-                .HasColumnType("varchar")
                 .HasMaxLength(12);
         }
     }

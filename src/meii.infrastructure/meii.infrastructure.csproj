@@ -35,6 +35,12 @@
     <Compile Remove="Migrations\20210128021916_AddEndereco.Designer.cs" />
     <Compile Remove="Migrations\20210128022111_AddEndereco1.cs" />
     <Compile Remove="Migrations\20210128022111_AddEndereco1.Designer.cs" />
+    <Compile Remove="Migrations\20210213134912_Modificando Max Length produto.cs" />
+    <Compile Remove="Migrations\20210213134912_Modificando Max Length produto.Designer.cs" />
+    <Compile Remove="Migrations\20210213135626_Modificando nome produto.cs" />
+    <Compile Remove="Migrations\20210213135626_Modificando nome produto.Designer.cs" />
+    <Compile Remove="Migrations\20210213135714_Modificando nome produto.cs" />
+    <Compile Remove="Migrations\20210213135714_Modificando nome produto.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

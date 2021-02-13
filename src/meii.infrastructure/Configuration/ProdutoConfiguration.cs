@@ -18,13 +18,10 @@ namespace meii.infrastructure.Configuration
                .ValueGeneratedOnAdd();
 
             builder.Property(p => p.Nome)
-                .HasColumnType("varchar")
-                .HasMaxLength(80)
-                .IsRequired();
+                .HasMaxLength(90).IsRequired();
 
             builder.Property(p => p.Descricao)
-                .HasColumnType("varchar")
-                .HasMaxLength(80);
+               .HasMaxLength(90);
 
             builder.Property(p => p.DataCadastro)
                 .HasColumnType("Date")

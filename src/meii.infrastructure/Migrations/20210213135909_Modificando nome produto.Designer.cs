@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using meii.infrastrutucture.Context;
 
 namespace meii.infrastructure.Migrations
 {
     [DbContext(typeof(MEContext))]
-    partial class MEContextModelSnapshot : ModelSnapshot
+    [Migration("20210213135909_Modificando nome produto")]
+    partial class Modificandonomeproduto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +105,7 @@ namespace meii.infrastructure.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(40)");
 
                     b.HasKey("Id");
 
@@ -118,7 +120,7 @@ namespace meii.infrastructure.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(8)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(8);
 
                     b.Property<int>("PessoaId")
@@ -289,19 +291,19 @@ namespace meii.infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(80)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(80);
 
                     b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(80)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(80);
 
                     b.Property<string>("TelefoneAlternativo")
-                        .HasColumnType("nvarchar(12)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(12);
 
                     b.Property<string>("TelefoneCelular")
-                        .HasColumnType("nvarchar(12)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(12);
 
                     b.HasKey("Id");
@@ -320,7 +322,7 @@ namespace meii.infrastructure.Migrations
 
                     b.Property<string>("Codigo")
                         .IsRequired()
-                        .HasColumnType("nvarchar(8)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(8);
 
                     b.Property<int>("QuantidadeMinima")
@@ -459,7 +461,7 @@ namespace meii.infrastructure.Migrations
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("nvarchar(80)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(80);
 
                     b.Property<DateTime>("DtNascimento")
@@ -476,20 +478,20 @@ namespace meii.infrastructure.Migrations
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
-                        .HasColumnType("nvarchar(80)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(80);
 
                     b.Property<string>("InscEstadual")
-                        .HasColumnType("nvarchar(80)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(80);
 
                     b.Property<string>("InscMunicipal")
-                        .HasColumnType("nvarchar(80)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(80);
 
                     b.Property<string>("NomeFantasia")
                         .IsRequired()
-                        .HasColumnType("nvarchar(80)")
+                        .HasColumnType("varchar")
                         .HasMaxLength(80);
 
                     b.HasDiscriminator().HasValue("PessoaJuridica");

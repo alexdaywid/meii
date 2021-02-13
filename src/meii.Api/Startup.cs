@@ -59,6 +59,8 @@ namespace meii.Api
 
             services.AddScoped<IClienteServices, ClienteServices>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IEmpresaService, EmpresaService>();
+            services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             services.AddScoped<ICategoriaService, CategoriaService>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();

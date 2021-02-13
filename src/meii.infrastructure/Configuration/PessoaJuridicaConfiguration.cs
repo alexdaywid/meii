@@ -13,21 +13,17 @@ namespace meii.infrastructure.Configuration
         {
             
             builder.Property(pj => pj.Cnpj)
-                .HasColumnType("varchar")
                 .HasMaxLength(80)
                 .IsRequired();
 
             builder.Property(pj => pj.NomeFantasia)
-               .HasColumnType("varchar")
                .HasMaxLength(80)
                .IsRequired();
 
             builder.Property(pj => pj.InscEstadual)
-               .HasColumnType("varchar")
                .HasMaxLength(80);
 
             builder.Property(pj => pj.InscMunicipal)
-               .HasColumnType("varchar")
                .HasMaxLength(80);     
         }
     }

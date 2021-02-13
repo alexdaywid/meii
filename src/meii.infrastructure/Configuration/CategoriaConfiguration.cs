@@ -18,7 +18,6 @@ namespace meii.infrastructure.Configuration
                 .ValueGeneratedOnAdd();
 
             builder.Property(c => c.Nome)
-                .HasColumnType("varchar(40)")
                 .IsRequired();
         }
     }
