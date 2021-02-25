@@ -32,6 +32,7 @@ namespace meii.Api.Controllers
         }
         // GET: api/Cliente
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<ClienteViewModel>> Get()
         {
             var cliente = await _clienteRepository.GetAll();
@@ -51,6 +52,7 @@ namespace meii.Api.Controllers
         }
 
         // POST: api/cliente/pessoa-fisica
+        [AllowAnonymous]
         [HttpPost("pessoa-fisica")]
         public async Task<ActionResult<ClienteViewModel>> Post(ClientePessoaFisicaViewModel clientePessoaFisica)
         {

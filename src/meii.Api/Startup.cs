@@ -66,6 +66,7 @@ namespace meii.Api
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
             services.AddScoped<IProdutoService, ProdutoService>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ICartaoFidelidadeRepository, CartaoFidelidadeRepository>();
             services.AddScoped<INotificador, Notificador>();
 
             services.AddAutoMapper((serviceProvider, automapper) =>

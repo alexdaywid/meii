@@ -51,6 +51,8 @@ namespace meii.Api.AutoMapper
                 .ForMember(des => des.Categoria, opt => opt.MapFrom(c => c.Categoria)).ReverseMap();
 
             CreateMap<Categoria, CategoriaVM>().ReverseMap();
+
+            CreateMap<CartaoFidelidade, CartaoFidelidadeVM>().ReverseMap();
         }
        
     }
