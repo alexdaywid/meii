@@ -50,15 +50,15 @@ export class ClienteService {
 
   public buscarClienteId(clienteId: number ) {
     const url = `${this.baseUrl}/${clienteId}`;
-    return this.http.get<Cliente>(url).pipe(
-      map(obj => obj),
+    return this.http.get<Cliente>(url)
+    .pipe(map(obj => obj),
       catchError((e) => this.handleError(e))
     );
   }
 
   public editarCliente(cliente: Cliente) {
-    const url = `${this.baseUrl}/${cliente.clienteId}`;
-    return this.http.put<Cliente>(url + '/' + cliente.clienteId, cliente).pipe(
+    const url = `${this.baseUrl}/pessoa-fisica/${cliente.id}`;
+    return this.http.put<Cliente>(url, cliente).pipe(
       map(obj => obj),
       catchError((e) => this.handleError(e))
     );

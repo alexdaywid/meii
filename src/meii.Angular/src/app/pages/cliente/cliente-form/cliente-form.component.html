@@ -11,104 +11,108 @@
         <div class="row">
           <div class="col-md-12">
             <form class="form-horizontal mr-2 ml-2" [formGroup] = "clienteform" >
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label>Nome</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" name="nome" formControlName ="nome">
-                  </div> 
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="validationDefaultUsername">Email</label>
-                  <div class="input-group input-group">
-                    <input type="text" class="form-control" name="email"  formControlName="email" placeholder="seu@email.com">
+
+              <div class="clo-md-12" formGroupName="pessoa">
+                <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <label>Nome</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="nome" formControlName ="nome">
+                    </div> 
                   </div>
-                </div>
-              </div>
-              
-              <!-- <div class="dropdown-divider"></div> -->
-              
-              <div class="form-row">
-                <div class="col-md-4 mb-2">
-                  <label for="validationDefaultUsername">Data Nascimento</label>
-                  <div class="input-group">
-                    <input type="date" class="form-control" id="validationDefaultUsername" name="dtNascimento"  formControlName="dtNascimento">
-                  </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                  <label for="validationDefaultUsername">Residencial</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend" >
-                      <span class="input-group-text" id="inputGroupPrepend2">
-                        <i class="fas fa-phone fa-1x mr-1"></i>
-                      </span>
+                  <div class="col-md-6 mb-3">
+                    <label for="validationDefaultUsername">Email</label>
+                    <div class="input-group input-group">
+                      <input type="text" class="form-control" name="email"  formControlName="email" placeholder="seu@email.com">
                     </div>
-                    <input type="text" class="form-control" id="validationDefaultUsername" name="telResidencial"  formControlName="telResidencial"  aria-describedby="inputGroupPrepend2" required required placeholder="(000) 9999-9999">
                   </div>
                 </div>
-                <div class="col-md-4 mb-2">
-                  <label for="validationDefaultUsername">Celular</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend" >
-                      <span class="input-group-text" id="inputGroupPrepend2">
-                        <i class="fas fa-mobile-alt fa-1x mr-1"></i>
-                      </span>
+                
+                <!-- <div class="dropdown-divider"></div> -->
+                
+                <div class="form-row">
+                  <div class="col-md-4 mb-2">
+                    <label for="validationDefaultUsername">Data Nascimento</label>
+                    <div class="input-group">
+                      <input type="date" class="form-control" id="validationDefaultUsername" name="dtNascimento"  formControlName="dtNascimento">
                     </div>
-                    <input type="text" class="form-control" id="validationDefaultUsername" name="telCelular"  formControlName="telCelular" placeholder="(000) 99999-9999">
                   </div>
+                  <div class="col-md-4 mb-2">
+                    <label for="validationDefaultUsername">Residencial</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend" >
+                        <span class="input-group-text" id="inputGroupPrepend2">
+                          <i class="fas fa-phone fa-1x mr-1"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" id="validationDefaultUsername" name="telResidencial"  formControlName="telefoneAlternativo"  aria-describedby="inputGroupPrepend2" required required placeholder="(000) 9999-9999">
+                    </div>
+                  </div>
+                  <div class="col-md-4 mb-2">
+                    <label for="validationDefaultUsername">Celular</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend" >
+                        <span class="input-group-text" id="inputGroupPrepend2">
+                          <i class="fas fa-mobile-alt fa-1x mr-1"></i>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" id="validationDefaultUsername" name="telCelular"  formControlName="telefoneCelular" placeholder="(000) 99999-9999">
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-4 mb-2">
+                    <label for="validationDefaultUsername">Tipo de pessoa</label>
+                    <select class="custom-select d-block w-100" id="state" onchan required="">
+                      <option value="">Escolha...</option>
+                      <option>Física</option>
+                      <option>Jurídica</option>
+                    </select>  
+                    </div> -->
                 </div>
-                <!-- <div class="col-md-4 mb-2">
-                  <label for="validationDefaultUsername">Tipo de pessoa</label>
-                  <select class="custom-select d-block w-100" id="state" onchan required="">
-                    <option value="">Escolha...</option>
-                    <option>Física</option>
-                    <option>Jurídica</option>
-                  </select>  
-                  </div> -->
+        
+                <!--<div class="form-row">
+                  <div class="col-md-6 mb-2">
+                    <label for="validationDefaultUsername">CPF</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="validationDefaultUsername" name="cpf"  formControlName="cpf"  placeholder="000.000.000-00">
+                    </div>
+                  </div>-->
+                  <!--<div class="col-md-6 mb-2">
+                    <label for="validationDefaultUsername">RG</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="validationDefaultUsername" name="rg"  formControlName="rg" aria-describedby="inputGroupPrepend2" required required>
+                    </div>
+                  </div>-->
+                <!--</div>-->
+        
+                <div class="form-row">
+                  <div class="col-md-6 mb-2">
+                    <label for="validationDefaultUsername">Cpf</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="validationDefaultUsername" name="cpf"  formControlName="cpf"  placeholder="000.000.000-00">
+                    </div>
+                  </div>
+                  <!--<div class="col-md-2 mb-2">
+                    <label for="validationDefaultUsername">Cnpj</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control"  name="cnpj"  formControlName="cnpj" >
+                    </div>
+                  </div>
+                  <div class="col-md-2 mb-2">
+                    <label for="validationDefaultUsername">Insc. Municipal</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control"  name="inscMunicipal"  formControlName="inscMunicipal">
+                    </div>
+                  </div>
+                  <div class="col-md-2 mb-2">
+                    <label for="validationDefaultUsername">Insc. Estadual</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control"  name="inscEstadual"  formControlName="inscEstadual">
+                    </div>
+                  </div>-->
+                </div>
+              
               </div>
-      
-              <div class="form-row">
-                <div class="col-md-6 mb-2">
-                  <label for="validationDefaultUsername">CPF</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="validationDefaultUsername" name="cpf"  formControlName="cpf"  placeholder="000.000.000-00">
-                  </div>
-                </div>
-                <div class="col-md-6 mb-2">
-                  <label for="validationDefaultUsername">RG</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="validationDefaultUsername" name="rg"  formControlName="rg" aria-describedby="inputGroupPrepend2" required required>
-                  </div>
-                </div>
-              </div>
-      
-              <div class="form-row">
-                <div class="col-md-6 mb-2">
-                  <label for="validationDefaultUsername">Nome Fantasia</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="validationDefaultUsername" name="cpf"  formControlName="cpf"  placeholder="000.000.000-00">
-                  </div>
-                </div>
-                <div class="col-md-2 mb-2">
-                  <label for="validationDefaultUsername">Cnpj</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control"  name="cnpj"  formControlName="cnpj" >
-                  </div>
-                </div>
-                <div class="col-md-2 mb-2">
-                  <label for="validationDefaultUsername">Insc. Municipal</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control"  name="inscMunicipal"  formControlName="inscMunicipal">
-                  </div>
-                </div>
-                <div class="col-md-2 mb-2">
-                  <label for="validationDefaultUsername">Insc. Estadual</label>
-                  <div class="input-group">
-                    <input type="text" class="form-control"  name="inscEstadual"  formControlName="inscEstadual">
-                  </div>
-                </div>
-              </div>
-            </form>
+             </form>
           </div>
         </div>
       </div>

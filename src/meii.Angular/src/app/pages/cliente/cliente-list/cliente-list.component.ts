@@ -42,9 +42,10 @@ export class ClienteListComponent implements OnInit {
     const lstClientes: Cliente[] = [];
     clientes.forEach(c => {
       this.cliente = new Cliente(
-        c.clienteId,
+        c.id,
         c.codigo,
-        c.pessoa,
+        c.appTenantId,
+        c.pessoa
       );
       lstClientes.push(this.cliente);
     });

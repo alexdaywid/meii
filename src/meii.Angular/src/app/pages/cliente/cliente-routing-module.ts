@@ -12,7 +12,7 @@ const routes: Routes = [
     path: 'novo' , component: ClienteFormComponent
   },
   {
-    path: 'edit/:id' , component: ClienteFormComponent
+    path: 'editar/:id' , component: ClienteFormComponent
   }
 ];
 

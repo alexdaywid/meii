@@ -1,8 +1,9 @@
 import { Pessoa } from '../model/pessoa.model';
 export class Cliente {
     constructor(
-        public clienteId?: number,
+        public id?: number,
         public codigo?: string,
+        public appTenantId?: number,
         public pessoa?: Pessoa,
     ) {}
 }
