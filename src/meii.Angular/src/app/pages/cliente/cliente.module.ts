@@ -1,3 +1,4 @@
+import { EnderecoModule } from './../endereco/endereco.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './../../shared/shared.module';
@@ -21,6 +22,7 @@ import { ReactiveFormsModule, FormBuilder, FormsModule } from '@angular/forms';
     CommonModule,
     ClienteRoutingModule,
     SharedModule,
+    EnderecoModule,
     ReactiveFormsModule,
     FormsModule,
   ],

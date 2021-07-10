@@ -1,3 +1,4 @@
+import { EnderecoModule } from './pages/endereco/endereco.module';
 import { ComprasModule } from './pages/compras/compras.module';
 import { VendasModule } from './pages/vendas/vendas.module';
 import { SharedModule } from './shared/shared.module';
@@ -44,6 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
     ProdutosModule,
     DashboardModule,
     VendasModule,
+    EnderecoModule,
     ComprasModule,
     HttpClientModule,
     DlDateTimeDateModule,

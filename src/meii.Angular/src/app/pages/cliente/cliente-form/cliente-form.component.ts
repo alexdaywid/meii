@@ -21,7 +21,7 @@ export class ClienteFormComponent implements OnInit {
   cliente: Cliente = new Cliente();
   btnDetailsForm = { name: 'Salvar', link: 'cliente/novo'};
   breadcrumpDetails = {name: 'Cliente', link: 'cliente'};
-
+  listaEnderecos: Endereco[] = [];
 
 
   constructor(
@@ -59,7 +59,7 @@ export class ClienteFormComponent implements OnInit {
         email: [null, [Validators.required]],
         telefoneAlternativo: [null],
         telefoneCelular: [null],
-        endereco: [],
+        //endereco: [],
         telCelular: [null],
         dtNascimento: [null],
       })
@@ -68,6 +68,8 @@ export class ClienteFormComponent implements OnInit {
   }
 
   public popularClienteForm(cliente: Cliente) {
+    this.listaEnderecos = cliente.pessoa.endereco;
+    
     this.clienteform.patchValue({
         id: cliente.id,
         codigo: cliente.codigo,
@@ -76,7 +78,7 @@ export class ClienteFormComponent implements OnInit {
           cpf: cliente.pessoa.cpf,
           email: cliente.pessoa.email,
           telefoneAlternativo : cliente.pessoa.telefoneAlternativo,
-          endereco: cliente.pessoa.endereco,
+          //endereco: cliente.pessoa.endereco,
           telefoneCelular: cliente.pessoa.telefoneCelular,
           dtNascimento: cliente.pessoa.dtNascimento,
         }    

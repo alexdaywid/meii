@@ -21,7 +21,7 @@
     "@angular/router": "~9.1.9",
     "angular-bootstrap-datetimepicker": "^4.0.2",
     "angular-datatables": "^8.1.0",
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^5.0.2",
     "bootstrap4-datetimepicker": "^5.2.3",
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",

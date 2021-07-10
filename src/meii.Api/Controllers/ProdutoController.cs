@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace meii.Api.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProdutoController : ControllerBase
