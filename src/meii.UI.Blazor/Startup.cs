@@ -18,6 +18,7 @@ using meii.UI.Blazor.Data;
 
 namespace meii.UI.Blazor
 {
+    //teste
     public class Startup
     {
         public Startup(IConfiguration configuration)
